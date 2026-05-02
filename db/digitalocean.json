@@ -1,0 +1,24 @@
+{
+  "3 Droplet": [
+    {
+      "description": "2 Bulan",
+      "price": 11000,
+      "stock": 1,
+      "accounts": [
+        "Email: 11@gmail.com\nPass: 123"
+      ],
+      "added_date": "2025-12-31T08:02:10.828Z"
+    }
+  ],
+  "10 Droplet": [
+    {
+      "description": "2 Bulan",
+      "price": 11000,
+      "stock": 1,
+      "accounts": [
+        "Email: 11@gmail.com\nPass: 123"
+      ],
+      "added_date": "2025-12-31T08:02:29.300Z"
+    }
+  ]
+}

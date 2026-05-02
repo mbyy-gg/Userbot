@@ -1,0 +1,30 @@
+{
+  "name": "telegram-autorder",
+  "version": "1.0.0",
+  "description": "Telegram bot (Telegraf)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "AlbyyPedia",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "archiver": "^7.0.1",
+    "file-type": "^16.5.3",
+    "telegraf": "*",
+    "telegram": "*",
+    "tar": "^7.5.1",
+    "input": "^1.0.1",
+    "fs": "^0.0.1-security", 
+    "ssh2": "^1.17.0", 
+    "rimraf": "^6.1.2", 
+    "moment-timezone": "^0.5.34", 
+    "node-os-utils": "^1.3.7",
+    "node-upload-images": "^1.0.1",
+    "performance-now": "^2.1.0",
+    "qrcode": "1.5.4", 
+    "os": "^0.1.2",
+    "util": "^0.12.5"
+  }
+}
