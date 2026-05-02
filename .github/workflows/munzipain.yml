@@ -1,0 +1,58 @@
+name: Extract and Push
+
+on:
+  push:
+    paths:
+      - '**.zip'
+  workflow_dispatch:
+
+jobs:
+  extract-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # <==== INI PENTING!
+
+    steps:
+      - name: 🔄 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 📦 Install unzip
+        run: sudo apt-get update && sudo apt-get install -y unzip
+
+      - name: 🗜️ Extract all zip files
+        run: |
+          for zip_file in *.zip; do
+            if [[ -f "$zip_file" ]]; then
+              echo "📁 Processing: $zip_file"
+              temp_dir="temp_$(date +%s)"
+              mkdir -p "$temp_dir"
+              unzip -q "$zip_file" -d "$temp_dir"
+              rm "$zip_file"
+              shopt -s dotglob
+              for item in "$temp_dir"/*; do
+                if [[ -e "$item" ]]; then
+                  mv -f "$item" ./
+                fi
+              done
+              shopt -u dotglob
+              rm -rf "$temp_dir"
+              echo "✅ Done: $zip_file"
+            fi
+          done
+
+      - name: 💾 Commit & push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Auto-extract zip files [skip actions]"
+            git push origin main
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
